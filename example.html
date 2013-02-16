@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+
+  <title>Relay.js</title>
+  <link rel="stylesheet" href="relay.css" type="text/css">
+  <script src="jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="relay.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript">
+    $(function () {
+      
+      window.Foo = new Relay('alert', {
+        text: 'I am a cool dude.',
+        oktext: 'LOL',
+
+        ok: function () {
+          console.log('User clicked OK');
+        },
+
+        onShow: function () {
+          console.log(this, ' is showing.');
+        },
+        onClose: function() {
+          console.log(this, ' is closing.');
+        }
+      });
+
+      window.Bar = new Relay('confirm', {
+        text: 'Do you confirm?',
+        yes: function() {
+          console.log('User clicked YES');
+        },
+        no: function() {
+          console.log('User clicked NO');
+        }
+      });
+
+      window.Baz = new Relay('prompt', {
+        text: 'Please type something'
+      });
+
+      $('.alert').live('click', function (e) {
+        Foo.show();
+        return false;
+      });
+
+      $('.confirm').live('click', function (e) {
+        Bar.show();
+        return false;
+      });
+
+      $('.prompt').live('click', function (e) {
+        Baz.show();
+        return false;
+      });
+
+    });
+  </script>
+</head>
+
+<a class="alert" href="#">Relay an alert</a>
+<a class="confirm" href="#">Relay a confirmation</a>
+<a class="prompt" href="#">Relay a prompter</a>
+
+</body>
+</html>
